@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -16,19 +16,28 @@ class AuthController extends Controller
 
     public function signup(Request $request)
     {
+
+
         $request->validate([
             'name'=> 'required|string|max:255',
-            'email' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'password_confirmation' => 'required',
         ]);
 
-        User::create([
+        $user = Users::create([
             'name'=> $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect('/login');    }
+        if (!$user) {
+            return back()->with('error', 'Something went wrong, please try again.');
+        }
+
+
+        return redirect('/login')->with('success', 'You Signup SUccessfully. Please Login.');
+    }
 
     public function showLoginForm()
     {
@@ -59,4 +68,6 @@ class AuthController extends Controller
     {
         return view('authentication.index');
     }
+
+   
 }

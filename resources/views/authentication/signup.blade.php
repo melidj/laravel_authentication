@@ -6,7 +6,12 @@
 <body>
     <div class="container mt-5">
         <h2>Sign Up</h2>
-        <form method="POST" action="/signup">
+
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        <form method="POST" action="{{ route('signup') }}">
             @csrf
             <div class="mb-3">
                 <label>Name</label>
@@ -25,6 +30,11 @@
                 <input type="password" name="password_confirmation" class="form-control" required>
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
+            
+            <div>
+                Already have an account?
+                <a href="{{ route('login') }}" class="btn btn-link">Login</a>
+            </div>
         </form>
     </div>
 </body>
