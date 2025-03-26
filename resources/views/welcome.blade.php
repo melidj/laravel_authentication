@@ -34,9 +34,9 @@
                     </ul>
                 </div>
                 <div class="d-flex">
-                    <button class="btn btn-outline-primary me-2" >Login</button>
+                    <a class="btn btn-outline-primary me-2" >Login</a>
                     
-                    <button class="btn btn-outline-secondary me-3" href="">Singup</button>
+                    <a class="btn btn-outline-secondary me-3" href="">Singup</a>
                 </div>
         </nav>
 
