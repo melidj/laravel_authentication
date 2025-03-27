@@ -33,8 +33,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="d-flex">
-                    <h3>User Name</h3>
+                <div class="d-flex me-3">
+                    <h3>{{ Auth::user()->name }}</h3>
                 </div>
         </nav>
 
