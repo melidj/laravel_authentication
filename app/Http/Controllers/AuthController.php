@@ -40,24 +40,19 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
-        $credentials = $request->only('email', 'password');
-
-        //with success authentication
-        if(Auth::attempt($credentials)){
-            $request->session()->regenerate();
-
-            return redirect('/index');
-        }
-
-        //with unsuccessfull authentication
-        return back();
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        $request->session()->regenerate();
+        return redirect()->route('index')->with('success', 'You Logged in successfully!');
     }
+
+    return back()->with('error', 'Invalid User! Please Signup');
+}
 
     public function index()
     {

@@ -38,8 +38,10 @@
                 </div>
         </nav>
 
-        <div class="container">
-            <h1>Welcome!</h1>
+        <div class="container me-2">
+            @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
         </div>
     </body>
 </html>

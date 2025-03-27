@@ -7,15 +7,11 @@
     <div class="container mt-5">
         <h2>Sign Up</h2>
 
-        @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-
         <form method="POST" action="{{ route('signup') }}">
             @csrf
             <div class="mb-3">
                 <label>Name</label>
-                <input type="text" name="name" class="form-control" required>
+                <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
                 @error('name')
                     <div class="invalid-feedback"> {{ $message }} </div>
                 @enderror
@@ -23,7 +19,7 @@
 
             <div class="mb-3">
                 <label>Email</label>
-                <input type="email" name="email" class="form-control" required>
+                <input type="email" name="email" class="form-control" placeholder="example@gmail.com" required>
                 @error('email')
                     <div class="invalid-feedback"> {{ $message }} </div>
                 @enderror

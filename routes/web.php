@@ -24,6 +24,8 @@ Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::middleware(['auth'])->get('/index', function () {
+Route::middleware(['auth'])->get('/index', [AuthController::class, 'index']);
+
+Route::get('/index', function(){
     return view('authentication.index');
-});
+})->name('index');

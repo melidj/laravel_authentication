@@ -6,11 +6,20 @@
 <body>
     <div class="container mt-5">
         <h2>Login</h2>
-        <form method="POST" action="/login">
+
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
+
+        <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="mb-3">
                 <label>Email</label>
-                <input type="email" name="email" class="form-control"  required>
+                <input type="email" name="email" class="form-control" placeholder="example@gmail.com" required>
                 @error('email')
                     <div class="invalid-feedback"> {{ $message }} </div>
                 @enderror
@@ -24,6 +33,11 @@
             </div>
             
             <button type="submit" class="btn btn-primary">Login</button>
+
+            <div>
+                Create account
+                <a href="{{ route('signup') }}" class="btn btn-link">Sign up</a>
+            </div>
         </form>
     </div>
 </body>
